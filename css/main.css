@@ -26,13 +26,9 @@ body {
     font-size: 16px;
 }
 
-
-a{
-	text-decoration: none;
-
-	color: #000000;
-
-
+a {
+    text-decoration: none;
+    color: #000000;
 }
 
 h1 {
@@ -108,8 +104,54 @@ ul {
     color: black;
 }
 
-.itemMenu a:hover,
-#reseauxSociaux .icones:hover {}
+
+/** DEBUT EFFET TRANSITION MENU**
+crédit: http://ianlunn.co.uk/articles/hover-css-tutorial-introduction/
+Hover.css (http://ianlunn.github.io/Hover/)
+*/
+
+.carre {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 50px transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.carre:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 6px;
+    right: 100%;
+    bottom: 9px;
+    background: #c92e32;
+    height: 70%;
+    -webkit-transition-property: right;
+    transition-property: right;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.carre:active,
+.carre:focus,
+.pas_accueil.carre:active,
+.pas_accueil.carre:focus {
+    /color: gray;
+}
+
+.carre:hover:before,
+.carre:focus:before,
+.carre:active:before {
+    right: 50%;
+}
+
+/**FIN EFFET TRANSITION MENU**/
+
 
 #reseauxSociaux {
     position: absolute;
@@ -160,7 +202,7 @@ ul {
 
 #zoneDesArtistes ul h1 {
     font-size: 2em;
-    color: red;
+    color: #c92e32;
     margin-bottom: 15px;
     margin-top: 0px;
 }

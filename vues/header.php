@@ -9,10 +9,10 @@
 			<div class="menu">
 				<nav id="menuPrincipal">
 					<ul>
-						<li class="itemMenu"><a href="index.php?Public&action=listeOeuvres">OEUVRES</a></li>
-						<li class="itemMenu"><a href="index.php?Public&action=listeArtistes">ARTISTES</a></li>
-						<li class="itemMenu"><a href="#">CARTE</a></li>
-						<li class="itemMenu"><a href="#">À PROPOS</a></li>
+						<li class="itemMenu"><a class="carre" href="index.php?Public&action=listeOeuvres">OEUVRES</a></li>
+						<li class="itemMenu"><a class="carre" href="index.php?Public&action=listeArtistes">ARTISTES</a></li>
+						<li class="itemMenu"><a class="carre" href="#">CARTE</a></li>
+						<li class="itemMenu"><a class="carre" href="#">À PROPOS</a></li>
 					</ul>
 				</nav>
 				<nav id="reseauxSociaux">
