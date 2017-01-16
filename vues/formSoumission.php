@@ -265,116 +265,126 @@
             var selectCategorie = document.getElementById("categorie");
             var categorie = selectCategorie.options[selectCategorie.selectedIndex].value;
             var selectArrondissement = document.getElementById("arrondissements");
-            var arrondissement = selectArrondissement.options[selectArrondissement.selectedIndex].value;
-            var adresse = document.getElementById("adresse").value;
-            var description = document.getElementById("description").value;
-            var image;
-            if (document.getElementById("imgId") == null) {
-                image = "";
-            }
-            else {
-                image = document.getElementById("imgId").src;
-            }
-            var titreVariante = document.getElementById("titreVariante").value; // !
-            var nomParc = document.getElementById("nomParc").value;
-            var batiment = document.getElementById("batiment").value;
-            var prenomArtiste = document.getElementById("prenomArtiste").value;
-            var nomArtiste = document.getElementById("nomArtiste").value;
-            var nomCollectif = document.getElementById("nomCollectif").value;
-            var bio = document.getElementById("bio").value;
-            var modeAcquisition = document.getElementById("modeAcquisition").value;
-            var numeroAccession = document.getElementById("numeroAccession").value;
-            var dateAccession = document.getElementById("dateAccession").value;
-            var materiaux = document.getElementById("materiaux").value;
-            var support = document.getElementById("support").value;
-            var technique = document.getElementById("technique").value;
-            var categorieObjet = document.getElementById("categorieObjet").value; // !
-            var dimensionGenerales = document.getElementById("dimensionGenerales").value;
-            var coordonneeLatitude = document.getElementById("coordonneeLatitude").value;
-            var coordonneeLongitude = document.getElementById("coordonneeLongitude").value;
-            var mediums = document.getElementById("mediums").value;
-            var nomCollection = document.getElementById("nomCollection").value; // !
-            var valide;
-            if (document.getElementById("valide").checked == true) {
-                valide = 1;
-            }
-            else {
-                valide = 0
-            }
-            // validation
-            if (titre == "" || categorie == "" || arrondissement == "" || adresse == "" || description == "" || image == "") {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 'slow'); // Reference http://stackoverflow.com/questions/4147112/how-to-jump-to-top-of-browser-page
-                document.getElementById("msgRetourSoumission").value = "VOUS DEVEZ ENTRER TOUS LES CHAMPS OBLIGATOIRES(*)";
-            }
-            else {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 'slow'); // Reference http://stackoverflow.com/questions/4147112/how-to-jump-to-top-of-browser-page
-                $.post("http://localhost/ArtPublicMTL/index.php?Public_AJAX&action=envoieSoumission", {
-                    id: id
-                    , titre: titre
-                    , categorie: categorie
-                    , arrondissement: arrondissement
-                    , adresse: adresse
-                    , description: description
-                    , image: image
-                    , titreVariante: titreVariante
-                    , nomParc: nomParc
-                    , batiment: batiment
-                    , prenomArtiste: prenomArtiste
-                    , nomArtiste: nomArtiste
-                    , nomCollectif: nomCollectif
-                    , bio: bio
-                    , modeAcquisition: modeAcquisition
-                    , numeroAccession: numeroAccession
-                    , dateAccession: dateAccession
-                    , materiaux: materiaux
-                    , support: support
-                    , technique: technique
-                    , categorieObjet: categorieObjet
-                    , dimensionGenerales: dimensionGenerales
-                    , coordonneeLatitude: coordonneeLatitude
-                    , coordonneeLongitude: coordonneeLongitude
-                    , mediums: mediums
-                    , nomCollection: nomCollection
-                    , valide: valide
-                }, function (data, status) {
-                    // data = <id>&<msg>
-                    var dataSplit = data.split("&");
-                    //document.getElementById("id").value = dataSplit[0];
-                    document.getElementById("msgRetourSoumission").value = dataSplit[1];
-                });
-            }
-        });
-        $("#supprimerSoumission").click(function () {
-            // Suppression du record.
-            var xhr;
-            xhr = new XMLHttpRequest();
-            if (xhr) {
-                xhr.open("GET", "http://localhost/ArtPublicMTL/index.php?AdminsAJAX&action=supprimerOeuvre&id=" + document.getElementById("id").value);
-                xhr.addEventListener("readystatechange", function () {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            if (xhr.responseText == "") { // la suppression a ete effectue
-                                window.location.href = 'http://localhost/ArtPublicMTL/index.php?admins&action=listeDesOeuvres';
-                            }
-                            else {
-                                document.getElementById("msgRetourSoumission").value = xhr.responseText;
-                            }
-                        }
-                        else if (xhr.status === 404) {
-                            //Aucune action dans le cas oû on ne trouve pas l'URL
-                        }
-                    }
-                });
-                //envoi de la requête
-                xhr.send();
-            }
-            // Retour a la page de selection.
-        });
-    });
+			var arrondissement = selectArrondissement.options[selectArrondissement.selectedIndex].value;
+			var adresse = document.getElementById("adresse").value;
+			var description = document.getElementById("description").value;
+			var image; 
+			if (document.getElementById("imgId") == null){
+				image = "";
+			}
+			else {
+				image= document.getElementById("imgId").src;
+			}
+
+			var titreVariante = document.getElementById("titreVariante").value; // !
+			var nomParc = document.getElementById("nomParc").value;
+			var batiment = document.getElementById("batiment").value;
+			var prenomArtiste = document.getElementById("prenomArtiste").value;
+			var nomArtiste = document.getElementById("nomArtiste").value;
+			var nomCollectif = document.getElementById("nomCollectif").value;
+			var bio = document.getElementById("bio").value;
+			var modeAcquisition = document.getElementById("modeAcquisition").value;
+			var numeroAccession = document.getElementById("numeroAccession").value;
+			var dateAccession = document.getElementById("dateAccession").value;
+			var materiaux = document.getElementById("materiaux").value;
+			var support = document.getElementById("support").value;
+			var technique = document.getElementById("technique").value;
+			var categorieObjet = document.getElementById("categorieObjet").value; // !
+			var dimensionGenerales = document.getElementById("dimensionGenerales").value;
+			var coordonneeLatitude = document.getElementById("coordonneeLatitude").value;
+			var coordonneeLongitude = document.getElementById("coordonneeLongitude").value;
+			var mediums = document.getElementById("mediums").value;
+
+			var nomCollection = document.getElementById("nomCollection").value; // !
+			var valide;
+			if(document.getElementById("valide").checked==true){
+				valide = 1;
+			}
+			else{ valide = 0}
+
+			// validation
+			if (titre == "" || categorie == "" || arrondissement == "" || adresse == "" || description == "" || image == ""){
+				$('html, body').animate({ scrollTop: 0 }, 'slow'); // Reference http://stackoverflow.com/questions/4147112/how-to-jump-to-top-of-browser-page
+				document.getElementById("msgRetourSoumission").value= "VOUS DEVEZ ENTRER TOUS LES CHAMPS OBLIGATOIRES(*)";
+			}
+			else{
+				$('html, body').animate({ scrollTop: 0 }, 'slow'); // Reference http://stackoverflow.com/questions/4147112/how-to-jump-to-top-of-browser-page
+			    $.post("http://localhost/ArtPublicMTL/index.php?Public_AJAX&action=envoieSoumission",
+				{
+					id: id,
+					titre: titre,
+					categorie: categorie,
+					arrondissement: arrondissement,
+					adresse: adresse,
+					description: description,
+					image: image,
+					titreVariante: titreVariante,
+					nomParc: nomParc,
+					batiment: batiment,
+					prenomArtiste: prenomArtiste,
+					nomArtiste: nomArtiste,
+					nomCollectif: nomCollectif,
+					bio: bio,
+					modeAcquisition: modeAcquisition,
+					numeroAccession: numeroAccession,
+					dateAccession: dateAccession,
+					materiaux: materiaux,
+					support: support,
+					technique: technique,
+					categorieObjet: categorieObjet,
+					dimensionGenerales: dimensionGenerales,
+					coordonneeLatitude: coordonneeLatitude,
+					coordonneeLongitude: coordonneeLongitude,
+					mediums: mediums,
+					nomCollection: nomCollection,
+					valide: valide
+				},
+				function(data, status){
+					// data = <id>&<msg>
+					var dataSplit = data.split("&");
+					//document.getElementById("id").value = dataSplit[0];
+					document.getElementById("msgRetourSoumission").value= dataSplit[1];
+	
+				});
+			}
+			
+		});
+		
+		$("#supprimerSoumission").click(function(){
+			// Suppression du record.
+			var xhr;
+			xhr = new XMLHttpRequest();
+			if(xhr){							
+				xhr.open("GET", "http://localhost/ArtPublicMTL/index.php?AdminsAjax&action=supprimerOeuvre&id="+ document.getElementById("id").value);
+				xhr.addEventListener("readystatechange", function(){					
+					if(xhr.readyState === 4){
+						if(xhr.status === 200){
+							if (xhr.responseText=="") { // la suppression a ete effectue
+								window.location.href = 'http://localhost/ArtPublicMTL/index.php?admins&action=listeDesOeuvres';
+							} 
+							else {
+								document.getElementById("msgRetourSoumission").value =xhr.responseText;
+							}
+						}
+					
+						else if(xhr.status === 404){
+							//Aucune action dans le cas oû on ne trouve pas l'URL
+						}
+					}
+				});
+				//envoi de la requête
+				xhr.send();
+
+			}
+			
+			// Retour a la page de selection.
+			
+		});
+
+	});
+
+
+
 </script>
 <?php
 	 global $admin;

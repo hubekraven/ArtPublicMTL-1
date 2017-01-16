@@ -1,5 +1,4 @@
 /* CSS PAGE ACCEUIL  */
-
 @font-face {
     font-family: 'bang_whack_powregular';
     src: url('font/bang_whack_pow-webfont.eot');
@@ -59,12 +58,33 @@ ul {
     padding: 30x;
 }
 
-
 /**CSS PAGE ACCUEIL**/
+.ombreTop{
+    width:100%;
+    height: 100%;
+    background-image: url("../images/degradeeNoir_petit_top.png");
+    background-repeat: repeat-x;
+    background-position: top; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+}
 
 #logo {
-    width: 70%;
+    width: 80%;
     margin-left: -20px;
+}
+
+.ligne_logo{
+	width:100%;
+	height: 13px;
+	background-image: url("../images/ligne_logo.png");
+	background-repeat: repeat-x;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    z-index: -90;
 }
 
 .pas_accueil .image_gauche {
@@ -81,10 +101,11 @@ ul {
 
 .menu {
     width: 100%;
+    margin-right: 130px;
 }
 
 #menuPrincipal {
-    margin-top: 45px;
+    margin-top: 25px;
 }
 
 .itemMenu,
@@ -109,7 +130,6 @@ ul {
 crédit: http://ianlunn.co.uk/articles/hover-css-tutorial-introduction/
 Hover.css (http://ianlunn.github.io/Hover/)
 */
-
 .carre {
     display: inline-block;
     vertical-align: middle;
@@ -149,7 +169,6 @@ Hover.css (http://ianlunn.github.io/Hover/)
 .carre:active:before {
     right: 50%;
 }
-
 /**FIN EFFET TRANSITION MENU**/
 
 
@@ -173,13 +192,24 @@ Hover.css (http://ianlunn.github.io/Hover/)
     color: #fff;
 }
 
+.ombreBottom{
+    width:100%;
+    height: 100%;
+    background-image: url("../images/degradeeNoir_petit_bottom.png");
+    background-repeat: repeat-x;
+    background-position: bottom; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -100;
+}
+
 .pas_accueil #reseauxSociaux .icones a {
     color: #000;
 }
 
-
+/**FIN PAGE ACCUEIL**/
 /**DÉBUT PAGE DES ARTISTES**/
-
 #zoneDesArtistes,
 #descriptionArtiste {
     width: 100%;
@@ -190,9 +220,7 @@ Hover.css (http://ianlunn.github.io/Hover/)
     margin: -10px 20px 20px 0;
 }
 
-
 /*http://www.webcis.com.br/dividir-texto-colunas-css3.html*/
-
 #zoneDesArtistes ul {
     -moz-column-count: 5;
     -moz-column-gap: 50px;
@@ -221,13 +249,8 @@ Hover.css (http://ianlunn.github.io/Hover/)
     position: absolute;
     bottom: -10px;
 }
-
-
 /**FIN PAGE DES ARTISTES**/
-
-
 /**DÉBUT PAGE DE LA BIO D'UN ARTISTE**/
-
 #infosMonArtiste {
     margin-top: 30px;
 }
@@ -252,28 +275,19 @@ Hover.css (http://ianlunn.github.io/Hover/)
     width: 30%;
     height: 30%;
 }
-
-
 /**FIN PAGE DE LA BIO D'UN ARTISTE**/
-
-
 /**DÉBUT PAGE À PROPOS**/
-
 .descriptionPagePropos {
     font-size: 1.2em;
-    margin: 20px 0px;
+    margin: 20px 0px 40px 0px;
+	line-height: 25px;
 }
 
-
+.pageAPropos{
+	margin: 0px 30px;
+}
 /**FIN PAGE À PROPOS**/
-
-
 /**DÉBUT TEMPLATE GAUCHE**/
-
-.pas_accueil aside {
-    /*position: fixed;*/
-}
-
 #labelRechercheSimple {
     font-family: 'bang_whack_powregular';
     font-size: 1.5em;
@@ -343,13 +357,8 @@ Hover.css (http://ianlunn.github.io/Hover/)
     position: absolute;
     top: 100px;
 }
-
-
 /**FIN TEMPLATE GAUCHE**/
-
-
 /**Debut LISTEOEUVRES**/
-
 #collectionOeuvres .titrePage {
     border-bottom: 2px solid black;
     margin: -10px 20px 20px 0;
@@ -366,6 +375,5 @@ Hover.css (http://ianlunn.github.io/Hover/)
     width: 250px;
     height: 50px;
 }
-
-
 /**FIN LISTEOEUVRES**/
+

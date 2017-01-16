@@ -17,14 +17,62 @@
 						$this->importeArtiste();
 						$this->importeOeuvre();
 						break;
-               
+
+					// supression d'une oeuvre
+                    case "supprimerOeuvre":
+						if(isset($params["id"])){
+							$modeleOeuvre = new Modele_oeuvres();
+							$valide = $modeleOeuvre->supprimerOeuvre($params["id"]);
+							if($valide==""){
+								echo "";								
+							}
+							else{
+								echo "ERROR:".$valide;
+							}
+						}
+						else{													
+							echo "ERROR";
+						}
+						break;	
+
+						
+					// supression d'une image du caroussel
+                    case "supprimerImageCaroussel":
+						if(isset($params["urlImage"])){
+							$modeleCaroussel = new Modele_caroussel();
+							$valide = $modeleCaroussel->supprimerUrlImage($params["urlImage"]);
+							if($valide){
+								$data = $modeleCaroussel->imagesCaroussel();
+								$this->afficheVue("caroussel",$data);										
+							}
+							else{
+								echo "ERROR";
+							}
+						}
+						else{													
+							echo "ERROR";
+						}
+						break;	
+						
+					// ajout d'une image au caroussel
+                    case "ajoutImageCaroussel":
+						if(isset($params["urlImage"])){
+							$modeleCaroussel = new Modele_caroussel();
+							$valide = $modeleCaroussel->ajouterUrlImage($params["urlImage"]);
+							if($valide){
+								$data = $modeleCaroussel->imagesCaroussel();
+								$this->afficheVue("caroussel",$data);										
+							}
+							else{
+								echo "ERROR";
+							}
+						}
+						else{													
+							echo "ERROR";
+						}
+						break;	
+        
 				}
-                case "supprimerOeuvre":
-                    $this->supprimeOeuvre();
-                    $this->afficheVue("adminListeDesOeuvres", $data);
-                break;
-					default:
-						echo "ERROR";		
 			}
 			else{
                 //action par défaut

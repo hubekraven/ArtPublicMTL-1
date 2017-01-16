@@ -19,6 +19,20 @@
 			if($controleur != ""){
 				//chercher la classe du controleur
 				$classe = "Controleur_" . $controleur;
+				//aidé par diadie
+				//garder les donnée du form dans la session
+				if(isset($_POST["modifier"])){
+					$_SESSION["sommesT"] = $_POST["sommesT"];
+					$_SESSION["sommesD"] = $_POST["sommesD"];
+					$_SESSION["missionT"] = $_POST["missionT"];
+					$_SESSION["missionD"] = $_POST["missionD"];
+					$_SESSION["joindreT"] = $_POST["joindreT"];
+					$_SESSION["joindreD"] = $_POST["joindreD"];
+					$_SESSION["partenaireT"] = $_POST["partenaireT"];
+					$_SESSION["partenaireD"] = $_POST["partenaireD"];
+					//redirectioner vers la page du form
+					header("Location:./index.php?Admins&action=insererPropos");
+				}
 			}
 
 			else{	

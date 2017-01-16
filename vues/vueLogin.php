@@ -3,7 +3,7 @@
     <a href="index.php"> <img id="logo" src="images/logo.png" alt="logo"> </a>
     <form id="loginForm" name="loginForm" method="POST">
         <label class="elemLogin"> Nom d'utilisateur </label>
-        <input type="text" class="inputLogin" id="username"=n ame="username" value="artpublicmtl" />
+        <input type="text" class="inputLogin" id="username" name="username" value="artpublicmtl" />
         <label class="elemLogin"> Mot de passe </label>
         <input type="password" class="inputLogin" id="password" name="password" value="art123" />
         <input type="hidden" id="grainSel" name="grainSel" value="<?php echo $_SESSION["grainDeSel"];?>"/>

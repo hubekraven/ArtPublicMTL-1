@@ -12,9 +12,9 @@
 				$rechDash = "%-".$strRecherche."%";
 				$sqlStm =
 					"SELECT 'lieu' as type, nom as resultat, (0) as id FROM arrondissement WHERE nom LIKE '".$rechDebut."' or nom LIKE '". $rechDans. "' or nom LIKE '". $rechDash. "'".
-					" UNION SELECT 'oeuvre' as type, titre as resultat, id from oeuvre where titre LIKE '".$rechDebut."' or titre LIKE '". $rechDans. "'".
-					" UNION SELECT 'artiste' as type, concat(prenom, ' ', nom) as resultat, id FROM artiste WHERE nom LIKE '". $rechDebut."' or nom LIKE '". $rechDans."' or prenom LIKE '". $rechDebut."' or prenom LIKE '". $rechDans."'".
-					" UNION SELECT 'artiste' as type, nomCollectif as resultat, id FROM artiste WHERE nomCollectif LIKE '". $rechDebut."' or nomCollectif LIKE '". $rechDans."'".
+					" UNION SELECT 'oeuvre' as type, titre as resultat, id from oeuvre where (titre LIKE '".$rechDebut."' or titre LIKE '". $rechDans. "') and valide = 1".
+					" UNION SELECT 'artiste' as type, concat(prenom, ' ', nom) as resultat, id FROM artisteavecoeuvre WHERE nom LIKE '". $rechDebut."' or nom LIKE '". $rechDans."' or prenom LIKE '". $rechDebut."' or prenom LIKE '". $rechDans."'".
+					" UNION SELECT 'artiste' as type, nomCollectif as resultat, id FROM artisteavecoeuvre WHERE nomCollectif LIKE '". $rechDebut."' or nomCollectif LIKE '". $rechDans."'".
 					" UNION SELECT 'categorie' as type, nom as resultat, (0) as id FROM categorie WHERE nom LIKE '".$rechDebut."' or nom LIKE '". $rechDans."'";
 				//echo $sqlStm;	
 				$stmt = $this->connexion->prepare($sqlStm);

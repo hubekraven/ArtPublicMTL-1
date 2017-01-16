@@ -10,7 +10,7 @@
 		public function obtenirTousOeuvresArtistes(){
 			try{			
 				$stmt = $this->connexion->prepare("SELECT oeuvre.id, idArtiste,titre, titreVariante, categorie,urlImage, artiste.prenom, artiste.nom
-													FROM oeuvre JOIN artiste ON idArtiste = artiste.id WHERE oeuvre.valide = 0");
+													FROM oeuvre JOIN artiste ON idArtiste = artiste.id WHERE oeuvre.valide = 1");
 				$stmt->execute();
 				return $stmt->fetchAll();
 			}		
@@ -24,7 +24,7 @@
 		public function obtenirOeuvresCategorie($uneCategorie){
 			try{	
 				$stmt = $this->connexion->prepare("SELECT oeuvre.id, titre, idArtiste, categorie,urlImage, artiste.prenom, artiste.nom  
-													FROM oeuvre JOIN artiste ON idArtiste = artiste.id WHERE categorie= :uneCategorie AND oeuvre.valide = 0");
+													FROM oeuvre JOIN artiste ON idArtiste = artiste.id WHERE categorie= :uneCategorie AND oeuvre.valide = 1");
 				$stmt->bindParam(":uneCategorie", $uneCategorie);
 				$stmt->execute();
 				return $stmt->fetchAll();	
@@ -39,7 +39,7 @@
 			try{			
 				$stmt = $this->connexion->prepare("SELECT oeuvre.id, idArtiste, titre, arrondissement,urlImage, artiste.prenom, artiste.nom, artiste.nomCollectif, coordonneeLatitude, coordonneeLongitude
 													FROM oeuvre JOIN artiste ON idArtiste = artiste.id
-													WHERE arrondissement= :unArrondissement AND oeuvre.valide = 0");
+													WHERE arrondissement= :unArrondissement AND oeuvre.valide = 1");
 				$stmt->bindParam(":unArrondissement", $unArrondissement);
 				$stmt->execute();
 				return $stmt->fetchAll();
@@ -52,7 +52,7 @@
         public function obtenirTousOeuvresArrondissement(){
 			try{			
 				$stmt = $this->connexion->prepare("SELECT oeuvre.id, idArtiste, titre, arrondissement,urlImage, artiste.prenom, artiste.nom, artiste.nomCollectif, coordonneeLatitude, coordonneeLongitude
-													FROM oeuvre JOIN artiste ON idArtiste = artiste.id AND oeuvre.valide = 0");
+													FROM oeuvre JOIN artiste ON idArtiste = artiste.id AND oeuvre.valide = 1");
 				$stmt->bindParam(":unArrondissement", $unArrondissement);
 				$stmt->execute();
 				return $stmt->fetchAll();
@@ -147,7 +147,7 @@
 				}
 			}	
 			catch(Exception $exc){
-				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur fastidieuse s'est produite";
+				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur s'est produite";
 			}
 
 		
@@ -177,8 +177,12 @@
 					// le ID n'a pas ete trouve on le cree dans ce cas
 					$quote = '"';
 					$sep = $quote.",".$quote;
-					$sql = "insert into artiste (prenom, nom, nomCollectif, biographie) values ('".$prenomArtiste."','".$nomArtiste."','".$nomCollectif."','".$bio."')";
-					$stmt = $this->connexion->prepare($sql);
+					if ($nomCollectif == null) {
+					  $sql = "insert into artiste (prenom, nom, biographie) values ('".$prenomArtiste."','".$nomArtiste."','".$bio."')";
+					}
+					else {
+					  $sql = "insert into artiste (nomCollectif, biographie) values ('".$nomCollectif."','".$bio."')";
+					}					$stmt = $this->connexion->prepare($sql);
 					$stmt->execute();
 					$sqlUpdateBio = $sql;
 					// obtenir l'identifiant du record cree		
@@ -207,7 +211,7 @@
 				return $id;
 			}
 			catch(Exception $exc){
-				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur fastidieuse s'est produite";
+				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur s'est produite";
 			}	
 		}
 		
@@ -224,7 +228,7 @@
 				return $bio;
 			}
 			catch(Exception $exc){
-				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur fastidieuse s'est produite";
+				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur s'est produite";
 			}	
 
 		}
@@ -233,14 +237,12 @@
 		public function obtenirOeuvre($id) {
 			try{
 				$sql = "SELECT oeuvre.*, nom, prenom, nomCollectif, biographie from oeuvre left outer join artiste on artiste.id = oeuvre.idArtiste where oeuvre.id =".$id;
-				//echo "prise 2=".$sql;
 				$stmt = $this->connexion->prepare($sql);
 				$stmt->execute();
 				return $stmt->fetch();
 			}
 			catch(Exception $exc){
-				//echo $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur fastidieuse s'est produite";
-				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur fastidieuse s'est produite";
+				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur s'est produite";
 			}	
 
 		}
@@ -249,14 +251,12 @@
 		public function supprimerOeuvre($id) {
 			try{
 				$sql = "delete from oeuvre where id =".$id;
-				//echo "prise 2=".$sql;
 				$stmt = $this->connexion->prepare($sql);
 				$stmt->execute();
 				return "";
 			}
 			catch(Exception $exc){
-				//echo $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur fastidieuse s'est produite";
-				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur fastidieuse s'est produite";
+				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur s'est produite";
 			}	
 
 		}		
@@ -274,8 +274,7 @@
 				return $stmt->fetchAll();
 			}
 			catch(Exception $exc){
-				//echo $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur fastidieuse s'est produite";
-				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur fastidieuse s'est produite";
+				return $exc->getmessage() . " sql=" . $sql . "  ***ERREUR: Une erreur s'est produite";
 			}	
 
 		}				

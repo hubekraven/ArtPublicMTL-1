@@ -1,3 +1,30 @@
+
+@font-face {
+    font-family: 'bang_whack_powregular';
+    src: url('font/bang_whack_pow-webfont.eot');
+    src: url('font/bang_whack_pow-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/bang_whack_pow-webfont.woff2') format('woff2'),
+         url('font/bang_whack_pow-webfont.woff') format('woff'),
+         url('font/bang_whack_pow-webfont.ttf') format('truetype'),
+         url('font/bang_whack_pow-webfont.svg#bang_whack_powregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'klillregular';
+    src: url('font/klill-light-webfont.eot');
+    src: url('font/klill-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/klill-light-webfont.woff2') format('woff2'),
+         url('font/klill-light-webfont.woff') format('woff'),
+         url('font/klill-light-webfont.ttf') format('truetype'),
+         url('font/klill-light-webfont.svg#klillregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 li {
     list-style: none;
 }
@@ -36,6 +63,70 @@ a {
 
 #menuPrincipal {
     border: 1px solid;
+}
+
+.inputLogin{
+	text-align: center;
+}
+
+#labelImportImage{
+	font-size: 30px;
+	font-family: 'klillregular';
+	text-decoration: none;
+	padding: 10px;
+	border: 2px solid red;
+	margin-bottom: 20px;
+}
+
+#imageCaroussel img, #imagelisteOeuvre img{
+	width: 100%;
+}
+
+#poubelle{
+	font-size: 40px;
+	font-family: 'bang_whack_powregular';
+	margin-left: 500px;
+}
+
+
+#imageCaroussel{
+	margin: 20px;
+	padding: 10px;
+	width: 550px;
+	border: 1px solid;
+}
+
+#imagesCaroussel, #listeImagesOeuvres{
+	display: flex;
+	flex-wrap: wrap;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	border-bottom: 3px solid;
+	padding-bottom: 50px;
+}
+
+
+#imagelisteOeuvre{
+	margin: 20px;
+	padding: 10px;
+	width: 250px;
+	border: 1px solid;
+}
+
+#formChargementImage{
+	margin-top: 100px;
+	text-align: left;
+}
+
+#titreImageCaroussel{
+	font-family: 'bang_whack_powregular';
+	font-size: 30px;
+}
+
+#titreListeImagesOeuvres{
+	font-family: 'bang_whack_powregular';
+	font-size: 23px;
 }
 
 .inputLogin {

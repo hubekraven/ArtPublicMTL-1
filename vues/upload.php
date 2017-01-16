@@ -5,7 +5,7 @@
     else {
         // generation du nom du fichier
         //$nomDuFichier = 'uploads/' . $_FILES['file']['name'];
-        $nomDuFichier = '../images/img' . uniqid() . '-' . $_FILES['file']['name'];
+        $nomDuFichier = '../images/img' . uniqid() . '-' .  str_replace(" ","-",$_FILES['file']['name']);
 
         move_uploaded_file(
              // this is where the file is temporarily stored on the server when uploaded

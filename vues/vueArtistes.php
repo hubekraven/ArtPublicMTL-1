@@ -8,16 +8,17 @@
             <h1>A</h1>
             <?php 
                     foreach ($data as $artiste){
-                        $premiereLettre = substr($artiste["nomArtiste"], 0, 1);
+                        $premiereLettre = strtoupper(substr($artiste["nomArtiste"], 0, 1));
                         if(chr($compteur) != $premiereLettre){
                             $compteur++;
                 ?>
                 <h1 class="titreABC"><?php echo chr($compteur); ?></h1>
                 <?php    
 						}//fermeture if 
-						if(($artiste["prenom"]!="Inconnu") && (chr($compteur) == $premiereLettre)){   
-                ?>
-                    <li><a href="index.php?Public&action=descriptionArtiste&id=<?php echo $artiste['id'] ?>">
+						if(($artiste["prenom"]!="Inconnu") && (chr($compteur) == $premiereLettre)){  
+						
+                ?>    
+							<li><a href="index.php?Public&action=descriptionArtiste&id=<?php echo $artiste['id'] ?>">
 								<?php echo $artiste["prenom"] . " <span class='gras'>" . $artiste["nomArtiste"] . "</span>"; ?>
 								</a> </li>
                     <?php 
